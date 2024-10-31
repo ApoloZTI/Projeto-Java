@@ -1,0 +1,55 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Produto {
+    String nome;
+    double preco;
+
+    Produto(String nome, double preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+}
+
+public class SistemaComprasOnline {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        List<Produto> catalogo = new ArrayList<>();
+        List<Produto> carrinho = new ArrayList<>();
+
+        catalogo.add(new Produto("Maçã", 3.00));
+        catalogo.add(new Produto("Banana", 2.00));
+        catalogo.add(new Produto("Laranja", 4.00));
+        catalogo.add(new Produto("Uva", 5.00));
+
+        int opcao;
+        do {
+            System.out.println("\nCatálogo de Produtos:");
+            for (int i = 0; i < catalogo.size(); i++) {
+                System.out.printf("%d. %s - R$ %.2f%n", i + 1, catalogo.get(i).nome, catalogo.get(i).preco);
+            }
+            System.out.println("0. Finalizar compra");
+            System.out.print("Escolha um produto: ");
+            opcao = scanner.nextInt();
+
+            if (opcao > 0 && opcao <= catalogo.size()) {
+                carrinho.add(catalogo.get(opcao - 1));
+                System.out.println(catalogo.get(opcao - 1).nome + " adicionado ao carrinho.");
+            } else if (opcao != 0) {
+                System.out.println("Opção inválida.");
+            }
+        } while (opcao != 0);
+
+        System.out.println("\nProdutos no carrinho:");
+        double total = 0;
+        for (Produto produto : carrinho) {
+            System.out.println(produto.nome + " - R$ " + produto.preco);
+            total += produto.preco;
+        }
+        System.out.printf("Total a pagar: R$ %.2f%n", total);
+        System.out.println("Obrigado pela sua compra!");
+
+        scanner.close();
+    }
+}

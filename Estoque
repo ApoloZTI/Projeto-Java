@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+class Fruta {
+    String nome;
+    int quantidade;
+
+    Fruta(String nome, int quantidade) {
+        this.nome = nome;
+        this.quantidade = quantidade;
+    }
+
+    void mostrar() {
+        if (quantidade > 0) {
+            System.out.println(nome + ": " + quantidade);
+        }
+    }
+}
+
+public class EstoqueFrutas {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Fruta[] estoque = {
+            new Fruta("Maçã", 10),
+            new Fruta("Banana", 10),
+            new Fruta("Laranja", 15),
+            new Fruta("Uva", 5)
+        };
+
+        System.out.println("Frutas em estoque:");
+        for (Fruta fruta : estoque) {
+            fruta.mostrar();
+        }
+
+        scanner.close();
+    }
+}
